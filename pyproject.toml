@@ -1,0 +1,67 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rago"
+version = "0.1.0"
+description = "Rago, le robot qui apprend à ne plus mentir : une série de Reels qui explique le RAG, générée en Python."
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "Afaf Oussetti" }]
+requires-python = ">=3.11"
+dependencies = [
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+# Outils de génération vidéo (lourds) : animations, voix, montage.
+video = [
+    "manim>=0.19",
+    "moviepy>=2.1",
+    "edge-tts>=7.0",
+    "pydub>=0.25",
+    # pydub utilise le module audioop, retiré de Python à partir de la 3.13.
+    "audioop-lts>=0.2; python_version >= '3.13'",
+]
+# Outils de développement : qualité de code et tests.
+dev = [
+    "ruff>=0.8",
+    "pytest>=8.0",
+    "pre-commit>=4.0",
+]
+
+[project.scripts]
+rago = "rago.cli:main"
+
+[project.urls]
+Repository = "https://github.com/afaf-oussetti/rago-rag-explique"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # erreurs de style (pycodestyle)
+    "W",   # avertissements de style
+    "F",   # erreurs logiques (pyflakes)
+    "I",   # tri des imports
+    "UP",  # syntaxe Python moderne
+    "B",   # pièges courants (bugbear)
+    "N",   # conventions de nommage
+    "D",   # docstrings
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

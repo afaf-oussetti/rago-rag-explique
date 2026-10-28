@@ -1,0 +1,46 @@
+# S01E01 · Rago invente des réponses : l'hallucination des LLM
+# Brouillon : le format sera stabilisé au jalon 3.
+# Sections : hook, probleme, solution, recap, teaser.
+# expression : humeur de Rago pendant la réplique ; animation : ce qui se passe à l'écran.
+
+id: s01e01
+saison: 1
+episode: 1
+titre: "Rago invente des réponses"
+notion: "L'hallucination des LLM"
+
+repliques:
+  - section: hook
+    texte: "La tour Eiffel ? Facile ! Elle a été construite en 1972 par des pingouins."
+    expression: fier
+    animation: "Rago bombe le torse, une tour Eiffel apparaît avec des pingouins."
+
+  - section: probleme
+    texte: "Euh... en fait, je n'en sais rien. Moi, je suis un LLM : je devine le mot le plus probable."
+    expression: gene
+    animation: "Les pingouins disparaissent, un point d'interrogation clignote au-dessus de Rago."
+
+  - section: probleme
+    texte: "Quand je ne connais pas la réponse, je ne dis pas « je ne sais pas ». J'invente une phrase qui sonne juste."
+    expression: perdu
+    animation: "Des mots sortent de la tête de Rago et s'assemblent en une phrase fausse."
+
+  - section: solution
+    texte: "Ça s'appelle une hallucination. Comme un élève qui récite avec assurance une leçon qu'il n'a jamais lue."
+    expression: pensif
+    animation: "Le mot « hallucination » s'affiche ; un élève sûr de lui, le livre fermé."
+
+  - section: solution
+    texte: "La solution ? Me donner les bons documents avant que je réponde. Ça porte un nom : le RAG."
+    expression: content
+    animation: "Une pile de documents glisse vers Rago, les lettres R-A-G s'allument."
+
+  - section: recap
+    texte: "À retenir : un LLM sans sources, c'est un élève qui répond sans avoir ouvert le livre."
+    expression: content
+    animation: "Phrase-récap en grand au centre de l'écran."
+
+  - section: teaser
+    texte: "Prochain épisode : on m'offre une bibliothèque ! Commente RAG pour recevoir le PDF."
+    expression: excite
+    animation: "Une porte de bibliothèque s'entrouvre ; mot « RAG » en surbrillance."
