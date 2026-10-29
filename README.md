@@ -73,6 +73,16 @@ Pour voir Rago et la charte graphique en images (dans `output/charte/`) :
 python -m rago preview
 ```
 
+Pour entendre la voix de Rago et deux autres variantes (dans `output/voix/`) :
+
+```bash
+python -m rago voices
+```
+
+> 🌐 La voix est générée avec [edge-tts](https://github.com/rany2/edge-tts), qui utilise le service
+> de voix de Microsoft Edge : gratuit, sans compte ni clé secrète, mais il faut **une connexion
+> internet**. Chaque réplique générée est gardée dans `cache/voice/` et n'est plus redemandée.
+
 ## Comment ça marche
 
 1. Le script de l'épisode est lu depuis `episodes/` (un fichier YAML : répliques + indications d'animation).
