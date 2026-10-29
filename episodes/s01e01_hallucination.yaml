@@ -1,46 +1,95 @@
 # S01E01 · Rago invente des réponses : l'hallucination des LLM
-# Brouillon : le format sera stabilisé au jalon 3.
-# Sections : hook, probleme, solution, recap, teaser.
-# expression : humeur de Rago pendant la réplique ; animation : ce qui se passe à l'écran.
+#
+# Chaque réplique contient :
+#   section    : hook, probleme, solution, recap ou teaser
+#   texte      : ce que Rago dit (la voix et les sous-titres en sont tirés)
+#   expression : neutre, content, fier, gene, perdu, pensif ou excite
+#   mot_cle    : (facultatif) mot(s) surligné(s) en orange dans les sous-titres
+#   pause_apres: (facultatif) silence ajouté après la réplique, en secondes
+#   animation  : (facultatif) ce qui se passe à l'écran, pour s'y retrouver
+#                (l'animation elle-même est codée dans src/rago/scenes/s01e01.py)
 
 id: s01e01
 saison: 1
 episode: 1
-titre: "Rago invente des réponses"
+titre: "L'hallucination"
 notion: "L'hallucination des LLM"
 
 repliques:
   - section: hook
-    texte: "La tour Eiffel ? Facile ! Elle a été construite en 1972 par des pingouins."
+    texte: "La tour Eiffel ? Construite en 1972… par des pingouins !"
     expression: fier
-    animation: "Rago bombe le torse, une tour Eiffel apparaît avec des pingouins."
+    mot_cle: "1972"
+    animation: "Une tour Eiffel apparaît, des pingouins arrivent à ses pieds."
 
   - section: probleme
-    texte: "Euh... en fait, je n'en sais rien. Moi, je suis un LLM : je devine le mot le plus probable."
+    texte: "Euh… en vrai, c'est 1889. Et je n'avais aucune source !"
     expression: gene
-    animation: "Les pingouins disparaissent, un point d'interrogation clignote au-dessus de Rago."
+    mot_cle: "1889"
+    animation: "Les pingouins disparaissent, 1972 est barré en rose, 1889 s'affiche en vert."
+    pause_apres: 1.0
 
   - section: probleme
-    texte: "Quand je ne connais pas la réponse, je ne dis pas « je ne sais pas ». J'invente une phrase qui sonne juste."
-    expression: perdu
-    animation: "Des mots sortent de la tête de Rago et s'assemblent en une phrase fausse."
-
-  - section: solution
-    texte: "Ça s'appelle une hallucination. Comme un élève qui récite avec assurance une leçon qu'il n'a jamais lue."
+    texte: "Je suis un LLM. J'ai lu des milliards de textes, et je devine le mot le plus probable."
     expression: pensif
-    animation: "Le mot « hallucination » s'affiche ; un élève sûr de lui, le livre fermé."
+    mot_cle: "probable"
+    animation: "« La tour Eiffel est… » et trois mots candidats avec leur probabilité."
+
+  - section: probleme
+    texte: "C'est comme l'autocomplétion de ton téléphone… mais en beaucoup plus fort."
+    expression: neutre
+    mot_cle: "autocomplétion"
+    animation: "Un téléphone propose trois mots au-dessus du clavier."
+
+  - section: probleme
+    texte: "Le problème ? Quand je ne sais pas, je ne dis pas « je ne sais pas ». J'invente une réponse qui sonne juste."
+    expression: perdu
+    mot_cle: "J'invente"
+    animation: "Des mots roses volent et s'assemblent en une phrase fausse."
+    pause_apres: 0.8
 
   - section: solution
-    texte: "La solution ? Me donner les bons documents avant que je réponde. Ça porte un nom : le RAG."
+    texte: "Ça s'appelle une hallucination. Comme un élève qui récite, très sûr de lui, une leçon qu'il n'a jamais lue."
+    expression: pensif
+    mot_cle: "hallucination"
+    animation: "Le mot « hallucination » en grand, puis un livre fermé."
+    pause_apres: 1.0
+
+  - section: solution
+    texte: "Et le pire : je le dis avec le même aplomb que quand j'ai raison."
+    expression: gene
+    mot_cle: "même aplomb"
+    animation: "Deux bulles identiques, 1889 et 1972 : impossible de voir laquelle est fausse."
+    pause_apres: 0.8
+
+  - section: solution
+    texte: "La solution ? Me donner les bons documents avant de répondre."
     expression: content
-    animation: "Une pile de documents glisse vers Rago, les lettres R-A-G s'allument."
+    mot_cle: "documents"
+    animation: "Trois documents verts glissent vers Rago."
+
+  - section: solution
+    texte: "Je cherche d'abord dans les documents, puis je réponds avec mes sources. Ça s'appelle le RAG."
+    expression: content
+    mot_cle: "RAG"
+    animation: "Documents → Rago → réponse avec source, puis les lettres R-A-G s'allument."
+    pause_apres: 1.2
 
   - section: recap
-    texte: "À retenir : un LLM sans sources, c'est un élève qui répond sans avoir ouvert le livre."
+    texte: "À retenir : un LLM sans sources, c'est un élève qui répond sans ouvrir le livre."
     expression: content
-    animation: "Phrase-récap en grand au centre de l'écran."
+    mot_cle: "sans sources"
+    animation: "Carte « À retenir » avec la phrase-récap."
+    pause_apres: 1.0
 
   - section: teaser
-    texte: "Prochain épisode : on m'offre une bibliothèque ! Commente RAG pour recevoir le PDF."
+    texte: "Prochain épisode : on m'offre une bibliothèque !"
     expression: excite
-    animation: "Une porte de bibliothèque s'entrouvre ; mot « RAG » en surbrillance."
+    mot_cle: "bibliothèque"
+    animation: "Une bibliothèque remplie de livres apparaît."
+
+  - section: teaser
+    texte: "Abonne-toi pour suivre mon histoire, et commente RAG pour recevoir le PDF !"
+    expression: excite
+    mot_cle: "commente RAG"
+    animation: "Boutons « Abonne-toi » et « Commente RAG »."

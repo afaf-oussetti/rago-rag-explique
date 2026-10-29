@@ -13,8 +13,9 @@ VIDEO_WIDTH: Final = 1080
 VIDEO_HEIGHT: Final = 1920
 FPS: Final = 30
 
-EPISODE_MIN_SECONDS: Final = 40
-EPISODE_MAX_SECONDS: Final = 60
+# Plus d'une minute : condition de rémunération TikTok (Creator Rewards), avec une marge.
+EPISODE_MIN_SECONDS: Final = 62
+EPISODE_MAX_SECONDS: Final = 80
 
 # Dimensions de l'écran en unités Manim : 1 unité = 120 pixels.
 FRAME_WIDTH: Final = 9.0
@@ -28,8 +29,8 @@ SAFE_TOP_Y: Final = FRAME_HEIGHT / 2 - SAFE_TOP_PX / PX_PER_UNIT
 SAFE_BOTTOM_Y: Final = -FRAME_HEIGHT / 2 + SAFE_BOTTOM_PX / PX_PER_UNIT
 
 # Position verticale des éléments récurrents (en unités Manim).
-SUBTITLE_Y: Final = SAFE_BOTTOM_Y + 1.15
-SIGNATURE_Y: Final = SAFE_BOTTOM_Y + 0.3
+SUBTITLE_Y: Final = SAFE_BOTTOM_Y + 1.3
+SIGNATURE_Y: Final = SAFE_BOTTOM_Y + 0.22
 
 SIGNATURE: Final = "Afaf.IA"
 
