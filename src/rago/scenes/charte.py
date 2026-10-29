@@ -4,8 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from manim import DOWN, LEFT, RIGHT, UP, DashedLine, Rectangle, Scene, VGroup, tempconfig
-from PIL import Image
+from manim import DOWN, LEFT, RIGHT, UP, DashedLine, Rectangle, Scene, VGroup
 
 from rago import theme
 from rago.character import EXPRESSIONS, Rago
@@ -17,6 +16,7 @@ from rago.components import (
     signature,
     subtitle,
 )
+from rago.scenes.base import render_still
 
 
 def _safe_zone_overlay() -> VGroup:
@@ -100,31 +100,6 @@ CHARTE_SCENES: dict[str, type[Scene]] = {
     "charte_ecran": CharteEcran,
     "charte_expressions": CharteExpressions,
 }
-
-
-def render_still(scene_class: type[Scene], output_path: Path) -> Path:
-    """Rend une scène sans animation en image PNG au format du Reel.
-
-    Args:
-        scene_class: La scène Manim à rendre.
-        output_path: Chemin du fichier PNG à créer.
-
-    Returns:
-        Le chemin de l'image créée.
-    """
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    options = theme.manim_config() | {
-        "media_dir": "media",
-        "write_to_movie": False,
-        "disable_caching": True,
-        "verbosity": "WARNING",
-        "progress_bar": "none",
-    }
-    with tempconfig(options):
-        scene = scene_class()
-        scene.render()
-        Image.fromarray(scene.renderer.get_frame()).save(output_path)
-    return output_path
 
 
 def render_charte(output_dir: Path) -> list[Path]:

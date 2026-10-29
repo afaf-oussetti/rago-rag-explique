@@ -1,0 +1,71 @@
+# Pages fixes du guide PDF « Le RAG expliqué par Rago ».
+# Les chapitres sont dans guide/chapitres/ : un fichier par épisode publié.
+# Générer le PDF : python -m rago guide
+
+titre: "Le RAG expliqué par Rago"
+sous_titre: "Le guide qui grandit à chaque épisode"
+auteur: "Afaf.IA"
+licence: >-
+  Ce guide est publié sous licence CC BY-NC 4.0 : tu peux le partager librement en citant
+  Afaf.IA, mais pas le vendre.
+
+bienvenue:
+  - >-
+    Salut ! Moi, c'est Rago. Je suis un **LLM**, un « grand modèle de langage », comme ceux qui
+    font tourner ChatGPT, Claude ou Gemini.
+  - >-
+    J'ai un gros défaut : quand je ne sais pas, j'invente. Dans la série, j'apprends pas à pas à
+    chercher dans des documents avant de répondre. Cette technique a un nom : le **RAG**.
+  - >-
+    Ce guide accompagne les vidéos. Chaque chapitre reprend un épisode, avec plus de détails, des
+    illustrations, un résumé et un petit exercice. Il s'enrichit à chaque nouvel épisode : garde-le
+    et reviens chercher la nouvelle version !
+
+comment_lire:
+  - "Un chapitre = un épisode = une seule notion."
+  - "Aucune connaissance en programmation n'est nécessaire."
+  - "Les mots en gras sont expliqués dans le glossaire, à la fin du guide."
+
+rag_une_page:
+  intro: >-
+    **RAG** veut dire *Retrieval-Augmented Generation*, en français « génération augmentée par la
+    récupération ». Derrière ce nom compliqué se cache une idée simple : avant de répondre, on va
+    chercher les bonnes informations.
+  etapes:
+    - nom: "Récupérer"
+      anglais: "Retrieval"
+      texte: "On cherche, dans une collection de documents, les passages qui parlent de la question."
+    - nom: "Augmenter"
+      anglais: "Augmented"
+      texte: "On ajoute ces passages à la question, pour que le modèle les ait sous les yeux."
+    - nom: "Générer"
+      anglais: "Generation"
+      texte: "Le modèle rédige sa réponse en s'appuyant sur ces passages, et peut citer ses sources."
+  conclusion: >-
+    Résultat : moins d'inventions, des réponses à jour, et des sources qu'on peut vérifier. Chaque
+    chapitre de ce guide détaille une pièce de cette mécanique.
+
+programme:
+  - { id: s01e01, titre: "L'hallucination des LLM" }
+  - { id: s01e02, titre: "Le principe du RAG : récupérer, augmenter, générer" }
+  - { id: s01e03, titre: "Le chunking : découper les documents en fiches" }
+  - { id: s01e04, titre: "Les embeddings : transformer les mots en coordonnées" }
+  - { id: s01e05, titre: "La recherche vectorielle et la similarité cosinus" }
+  - { id: s01e06, titre: "Les bases vectorielles : FAISS, Chroma, pgvector" }
+  - { id: s01e07, titre: "Le prompt augmenté et la fenêtre de contexte" }
+  - { id: s02e01, titre: "La recherche hybride : mots-clés et sens" }
+  - { id: s02e02, titre: "Le reranking : trier les résultats" }
+  - { id: s02e03, titre: "La réécriture de requête et HyDE" }
+  - { id: s02e04, titre: "Les métadonnées : filtrer les fiches" }
+  - { id: s02e05, titre: "Évaluer un RAG : fidélité et pertinence" }
+
+suivre:
+  texte: >-
+    Rago continue d'apprendre ! Abonne-toi pour suivre son histoire et recevoir chaque nouvelle
+    version de ce guide.
+  comptes:
+    - "Afaf.IA"
+  code: >-
+    Les vidéos sont générées à 100 % en Python : animations, voix, sous-titres et ce guide. Tout le
+    code est ouvert, pour apprendre ou créer tes propres vidéos :
+  repo: "https://github.com/afaf-oussetti/rago-rag-explique"

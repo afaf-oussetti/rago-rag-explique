@@ -22,6 +22,8 @@ from pathlib import Path
 
 import numpy as np
 from manim import DOWN, UP, FadeIn, FadeOut, Mobject, Scene, VGroup, tempconfig
+from manim.utils.exceptions import EndSceneEarlyException
+from PIL import Image
 
 from rago import theme
 from rago.character import Rago
@@ -45,12 +47,21 @@ class EpisodeScene(Scene):
     Args:
         episode: Le script de l'épisode.
         timeline: Le minutage calculé à partir des durées de la voix.
+        stop_after_line: Si indiqué, la scène s'arrête à la fin de cette réplique (numéro
+            commençant à 0). Sert à « photographier » un moment de l'épisode pour le guide PDF.
         **kwargs: Options transmises à ``Scene``.
     """
 
-    def __init__(self, episode: Episode, timeline: Timeline, **kwargs) -> None:
+    def __init__(
+        self,
+        episode: Episode,
+        timeline: Timeline,
+        stop_after_line: int | None = None,
+        **kwargs,
+    ) -> None:
         self.episode = episode
         self.timeline = timeline
+        self.stop_after_line = stop_after_line
         self.stage = VGroup()
         super().__init__(**kwargs)
 
@@ -92,6 +103,9 @@ class EpisodeScene(Scene):
         Yields:
             Le créneau de la réplique (début, durée).
         """
+        if self.stop_after_line is not None and index > self.stop_after_line:
+            raise EndSceneEarlyException()
+
         cue = self.timeline.cues[index]
         line = self.episode.lines[index]
         self.wait_until(cue.start)
@@ -158,3 +172,65 @@ def render_episode_scene(
         scene = scene_class(episode=episode, timeline=timeline)
         scene.render()
         return Path(scene.renderer.file_writer.movie_file_path)
+
+
+def render_line_still(
+    scene_class: type[EpisodeScene],
+    episode: Episode,
+    timeline: Timeline,
+    line_index: int,
+    output_path: Path,
+    media_dir: Path = Path("media"),
+) -> Path:
+    """Enregistre en PNG l'image de l'épisode à la fin d'une réplique, sans calculer la vidéo.
+
+    Args:
+        scene_class: La scène de l'épisode.
+        episode: Le script de l'épisode.
+        timeline: Le minutage de l'épisode.
+        line_index: Numéro de la réplique (commençant à 0).
+        output_path: Le fichier PNG à créer.
+        media_dir: Le dossier de travail de Manim.
+
+    Returns:
+        Le chemin de l'image créée.
+    """
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    options = theme.manim_config() | {
+        "media_dir": str(media_dir),
+        "save_last_frame": True,
+        "write_to_movie": False,
+        "disable_caching": True,
+        "verbosity": "WARNING",
+        "progress_bar": "none",
+    }
+    with tempconfig(options):
+        scene = scene_class(episode=episode, timeline=timeline, stop_after_line=line_index)
+        scene.render()
+        Image.fromarray(scene.renderer.get_frame()).save(output_path)
+    return output_path
+
+
+def render_still(scene_class: type[Scene], output_path: Path) -> Path:
+    """Rend une scène sans animation en image PNG au format du Reel.
+
+    Args:
+        scene_class: La scène Manim à rendre.
+        output_path: Chemin du fichier PNG à créer.
+
+    Returns:
+        Le chemin de l'image créée.
+    """
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    options = theme.manim_config() | {
+        "media_dir": "media",
+        "write_to_movie": False,
+        "disable_caching": True,
+        "verbosity": "WARNING",
+        "progress_bar": "none",
+    }
+    with tempconfig(options):
+        scene = scene_class()
+        scene.render()
+        Image.fromarray(scene.renderer.get_frame()).save(output_path)
+    return output_path

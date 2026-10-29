@@ -67,6 +67,14 @@ def build_parser() -> argparse.ArgumentParser:
         help="dossier des images (par défaut : output/charte/)",
     )
 
+    guide = subparsers.add_parser("guide", help="génère le guide PDF « Le RAG expliqué par Rago »")
+    guide.add_argument(
+        "--output",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / "guide_rag.pdf",
+        help="fichier PDF à créer (par défaut : output/guide_rag.pdf)",
+    )
+
     voices = subparsers.add_parser("voices", help="génère les variantes de voix de Rago (WAV)")
     voices.add_argument(
         "--output-dir",
@@ -110,6 +118,16 @@ def main(argv: Sequence[str] | None = None) -> int:
 
         for path in render_charte(args.output_dir):
             print(f"Image créée : {path}")
+        return 0
+
+    if args.command == "guide":
+        from rago.guide import GuideError, build_guide
+
+        try:
+            build_guide(output_path=args.output)
+        except GuideError as error:
+            print(f"Erreur dans le guide : {error}")
+            return 2
         return 0
 
     if args.command == "voices":
