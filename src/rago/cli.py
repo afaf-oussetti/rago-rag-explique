@@ -11,6 +11,13 @@ from rago import __version__
 DEFAULT_EPISODES_DIR = Path("episodes")
 DEFAULT_OUTPUT_DIR = Path("output")
 
+# Répliques de S01E01 utilisées pour comparer les variantes de voix.
+VOICE_SAMPLES = (
+    "La tour Eiffel ? Facile ! Elle a été construite en 1972 par des pingouins.",
+    "Quand je ne connais pas la réponse, je ne dis pas « je ne sais pas ». "
+    "J'invente une phrase qui sonne juste.",
+)
+
 
 def find_episode_script(episode_id: str, episodes_dir: Path) -> Path | None:
     """Retrouve le script YAML d'un épisode à partir de son identifiant.
@@ -53,6 +60,14 @@ def build_parser() -> argparse.ArgumentParser:
         default=DEFAULT_OUTPUT_DIR / "charte",
         help="dossier des images (par défaut : output/charte/)",
     )
+
+    voices = subparsers.add_parser("voices", help="génère les variantes de voix de Rago (WAV)")
+    voices.add_argument(
+        "--output-dir",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / "voix",
+        help="dossier des fichiers audio (par défaut : output/voix/)",
+    )
     return parser
 
 
@@ -83,6 +98,18 @@ def main(argv: Sequence[str] | None = None) -> int:
 
         for path in render_charte(args.output_dir):
             print(f"Image créée : {path}")
+        return 0
+
+    if args.command == "voices":
+        from rago.voice import VOICE_PRESETS, generate_line, join_clips
+
+        args.output_dir.mkdir(parents=True, exist_ok=True)
+        for key, preset in VOICE_PRESETS.items():
+            clips = [generate_line(text, preset) for text in VOICE_SAMPLES]
+            output = args.output_dir / f"variante_{key}.wav"
+            join_clips(clips).export(output, format="wav")
+            durations = " + ".join(f"{clip.duration:.1f} s" for clip in clips)
+            print(f"Variante {key} · {preset.name} ({preset.voice}) : {output} [{durations}]")
         return 0
 
     return 0

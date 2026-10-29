@@ -6,7 +6,7 @@
 |---|---|---|
 | 0 | Initialisation du repo (structure, outils, CI) | ✅ Terminé |
 | 1 | Charte graphique et design de Rago | ✅ Terminé |
-| 2 | Voix robot (2 ou 3 variantes) | ⏳ À faire |
+| 2 | Voix robot (2 ou 3 variantes) | ✅ Terminé (variante A) |
 | 3 | Pipeline complet + épisode pilote S01E01 | ⏳ À faire |
 
 ## Épisodes
@@ -42,3 +42,9 @@
 - Rago et ses 7 expressions dans `character.py`, composants communs dans `components.py`
 - `python -m rago preview` rend les planches de charte dans `output/charte/`
 - Tests du personnage (ignorés en CI tant que Manim n'y est pas installé)
+
+### 2026-10-29 · Jalon 2
+
+- `voice.py` : préréglages de voix, effet robot (métal + écho), coupe des silences, cache, durées
+- 3 variantes comparées (`python -m rago voices`) : **A · Petit robot malin** retenue (Henri, +25 Hz, +5 %, écho 45 ms)
+- À prévoir au jalon 3 : raccourcir le hook de S01E01 (~5,5 s actuellement, objectif 3 s)

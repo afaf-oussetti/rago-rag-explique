@@ -62,4 +62,29 @@ Code couleur de l'ampoule : **rose-violet = Rago invente**, **jaune = Rago a une
 
 ## Ton de la voix
 
-*À compléter au jalon 2.*
+Rago est un **petit robot malin** : il parle avec assurance (même quand il se trompe !), sur un ton
+léger, chaleureux et bien compréhensible, jamais inquiétant.
+
+Réglages officiels, préréglage `A` (`RAGO_VOICE` dans [`src/rago/voice.py`](../src/rago/voice.py)) :
+
+| Réglage | Valeur |
+|---|---|
+| Voix edge-tts | `fr-FR-HenriNeural` |
+| Vitesse | +5 % |
+| Hauteur | +25 Hz (un peu plus aiguë, plus « petit robot ») |
+| Écho | 45 ms, −16 dB (très court, effet « boîtier de robot ») |
+| Touche métallique | aucune |
+
+Les silences de début et de fin sont coupés, et le volume est normalisé.
+
+Pour réécouter les variantes comparées au jalon 2 (A, B, C) :
+
+```bash
+python -m rago voices      # crée output/voix/variante_A.wav, _B.wav, _C.wav
+```
+
+### Écriture des répliques
+
+- Des phrases courtes : environ 2,5 mots par seconde avec cette voix.
+- Le hook tient en 3 s, soit 7 à 8 mots maximum.
+- La ponctuation guide l'intonation : « ? » et « ! » sont bien rendus, et « … » crée une pause.
