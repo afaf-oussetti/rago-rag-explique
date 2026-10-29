@@ -5,7 +5,7 @@
 | Jalon | Contenu | État |
 |---|---|---|
 | 0 | Initialisation du repo (structure, outils, CI) | ✅ Terminé |
-| 1 | Charte graphique et design de Rago | 🔎 En validation |
+| 1 | Charte graphique et design de Rago | ✅ Terminé |
 | 2 | Voix robot (2 ou 3 variantes) | ⏳ À faire |
 | 3 | Pipeline complet + épisode pilote S01E01 | ⏳ À faire |
 
