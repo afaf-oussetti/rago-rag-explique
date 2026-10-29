@@ -1,5 +1,9 @@
 # Vérifications lancées automatiquement avant chaque commit.
 # Installation : pre-commit install
+
+# Les fichiers tiers (polices, licences) sont gardés tels quels.
+exclude: ^assets/fonts/
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0

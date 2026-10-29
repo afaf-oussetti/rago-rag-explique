@@ -9,6 +9,7 @@ from pathlib import Path
 from rago import __version__
 
 DEFAULT_EPISODES_DIR = Path("episodes")
+DEFAULT_OUTPUT_DIR = Path("output")
 
 
 def find_episode_script(episode_id: str, episodes_dir: Path) -> Path | None:
@@ -42,6 +43,16 @@ def build_parser() -> argparse.ArgumentParser:
         default=DEFAULT_EPISODES_DIR,
         help="dossier des scripts YAML (par défaut : episodes/)",
     )
+
+    preview = subparsers.add_parser(
+        "preview", help="rend les planches de la charte graphique (PNG)"
+    )
+    preview.add_argument(
+        "--output-dir",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR / "charte",
+        help="dossier des images (par défaut : output/charte/)",
+    )
     return parser
 
 
@@ -65,5 +76,13 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(f"Script trouvé : {script}")
         print("Le pipeline de génération n'est pas encore implémenté (jalon 3).")
         return 1
+
+    if args.command == "preview":
+        # Import tardif : Manim n'est nécessaire que pour cette commande.
+        from rago.scenes.charte import render_charte
+
+        for path in render_charte(args.output_dir):
+            print(f"Image créée : {path}")
+        return 0
 
     return 0

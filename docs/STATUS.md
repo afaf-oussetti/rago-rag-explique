@@ -5,7 +5,7 @@
 | Jalon | Contenu | État |
 |---|---|---|
 | 0 | Initialisation du repo (structure, outils, CI) | ✅ Terminé |
-| 1 | Charte graphique et design de Rago | ⏳ À faire |
+| 1 | Charte graphique et design de Rago | 🔎 En validation |
 | 2 | Voix robot (2 ou 3 variantes) | ⏳ À faire |
 | 3 | Pipeline complet + épisode pilote S01E01 | ⏳ À faire |
 
@@ -34,3 +34,11 @@
 - CLI minimale : `python -m rago build s01e01` trouve le script (pipeline à venir)
 - Premier brouillon du script S01E01
 - Reste à installer ffmpeg avant le jalon 2
+
+### 2026-10-29 · Jalon 1
+
+- Outils vidéo installés (Manim 0.22, MoviePy, edge-tts, pydub) et ffmpeg
+- Palette, police Fredoka (OFL), zones de sécurité Instagram dans `theme.py`
+- Rago et ses 7 expressions dans `character.py`, composants communs dans `components.py`
+- `python -m rago preview` rend les planches de charte dans `output/charte/`
+- Tests du personnage (ignorés en CI tant que Manim n'y est pas installé)
