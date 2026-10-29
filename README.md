@@ -96,6 +96,19 @@ python -m rago voices
 3. L'animation Manim est calée sur ces durées.
 4. MoviePy assemble animation, voix, sous-titres et signature, puis exporte le MP4 vertical (1080 × 1920, 30 fps).
 
+## Le guide PDF
+
+Le PDF promis dans les vidéos (« Commente RAG pour recevoir le PDF ») est généré lui aussi en Python,
+avec les mêmes couleurs, la même police et des illustrations tirées directement des épisodes :
+
+```bash
+python -m rago guide      # crée output/guide_rag.pdf
+```
+
+Son contenu est dans [`guide/`](guide/) : `guide.yaml` pour les pages fixes et un fichier par
+chapitre dans `guide/chapitres/`. Le guide grandit à chaque épisode : ajoute un chapitre, relance la
+commande, et la version, le sommaire et le glossaire se mettent à jour tout seuls.
+
 ## Créer ton propre épisode
 
 1. Écris le script dans `episodes/s09e01_mon_sujet.yaml`, en t'inspirant de
@@ -112,6 +125,7 @@ python -m rago voices
 episodes/        scripts des épisodes (YAML)
 src/rago/        le code : personnage, thème, voix, scènes, sous-titres, assemblage, CLI
 assets/          polices et sons libres de droits (sources citées)
+guide/           contenu du guide PDF (pages fixes + un chapitre par épisode)
 docs/            charte graphique et suivi d'avancement
 tests/           tests automatiques
 ```

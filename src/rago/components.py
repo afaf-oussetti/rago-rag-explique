@@ -8,11 +8,14 @@ from manim import (
     DOWN,
     DR,
     LEFT,
+    ORIGIN,
+    PI,
     RIGHT,
     UL,
     UP,
     UR,
     Arrow,
+    Circle,
     Line,
     MarkupText,
     Polygon,
@@ -198,6 +201,14 @@ def button(text: str, fill: str = theme.ACCENT, text_color: str = theme.BACKGROU
         width=label.width + 0.9, height=label.height + 0.55, corner_radius=0.4, stroke_width=0
     ).set_fill(fill, 1)
     return VGroup(pill, label.move_to(pill))
+
+
+def magnifier(color: str = theme.TEXT) -> VGroup:
+    """Crée une loupe (recherche dans les documents)."""
+    lens = Circle(radius=0.45, stroke_width=10).set_stroke(color).set_fill(color, 0.12)
+    handle = Line(ORIGIN, DR * 0.55, stroke_width=16).set_stroke(color)
+    handle.shift(lens.point_at_angle(-PI / 4) - handle.get_start())
+    return VGroup(lens, handle)
 
 
 def document_icon(color: str = theme.PAPER, lines: int = 4) -> VGroup:

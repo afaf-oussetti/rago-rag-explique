@@ -1,0 +1,86 @@
+# Chapitre du guide PDF pour l'épisode S01E01.
+#
+# Champs :
+#   episode      : identifiant de l'épisode (son script est dans episodes/)
+#   titre, sous_titre
+#   en_bref      : le résumé du chapitre en deux ou trois phrases
+#   sections     : le corps du chapitre ; « illustration » = numéro de la réplique de l'épisode
+#                  dont on « photographie » l'écran (la réplique 1 est la première)
+#   analogie, a_retenir, exercice, glossaire
+# Mise en forme : **gras** et *italique* sont acceptés dans les textes.
+
+episode: s01e01
+titre: "L'hallucination"
+sous_titre: "Pourquoi Rago invente des réponses"
+
+en_bref: >-
+  Un **LLM** ne « connaît » pas les faits comme une encyclopédie : il prédit la suite la plus
+  probable d'un texte. Quand il lui manque la bonne information, il produit quand même une
+  réponse… qui peut être fausse. C'est une **hallucination**.
+
+sections:
+  - titre: "Comment un LLM écrit"
+    texte:
+      - >-
+        Un LLM a été entraîné sur des milliards de textes. Quand tu lui poses une question, il
+        écrit sa réponse petit à petit, **token** après token (un token est un mot ou un morceau
+        de mot). À chaque étape, il choisit une suite probable, d'après tout ce qu'il a lu.
+      - >-
+        C'est comme l'autocomplétion de ton téléphone, en beaucoup plus puissant : au lieu de
+        proposer trois mots, il rédige des paragraphes entiers.
+    illustration: 3
+    legende: "Après « La tour Eiffel est à… », « Paris » est de loin la suite la plus probable (chiffres donnés pour l'exemple)."
+
+  - titre: "Pourquoi il invente"
+    texte:
+      - >-
+        Un LLM n'a pas de bouton « je ne sais pas » intégré. Si la bonne information lui manque
+        (sujet trop récent, trop rare, ou document interne à ton entreprise), il continue
+        quand même à produire la suite la plus plausible.
+      - >-
+        Le résultat ressemble à une vraie réponse : bonne grammaire, ton assuré, parfois même des
+        détails précis… mais inventés.
+
+  - titre: "Le vrai danger"
+    texte:
+      - >-
+        Une hallucination se présente exactement comme une bonne réponse : même aplomb, même
+        style. Impossible de faire la différence sans vérifier.
+    illustration: 7
+    legende: "Les deux réponses ont l'air aussi sûres l'une que l'autre. Seule une source permet de trancher."
+
+  - titre: "La piste de solution"
+    texte:
+      - >-
+        Plutôt que de compter sur la mémoire du modèle, on lui donne les bons documents au moment
+        de répondre, et on lui demande de s'appuyer dessus. C'est le principe du **RAG**, que
+        Rago découvre dans le prochain chapitre.
+
+analogie: >-
+  Un LLM sans sources, c'est un élève qui récite avec assurance une leçon qu'il n'a jamais lue.
+  Le RAG, c'est lui donner le livre, ouvert à la bonne page.
+
+a_retenir:
+  - "Un LLM prédit la suite la plus probable : il ne vérifie pas les faits."
+  - "Une hallucination est une réponse fausse donnée avec assurance."
+  - "On ne la repère pas au ton employé : il faut des sources."
+
+exercice: >-
+  Demande à un assistant IA de te présenter une petite entreprise ou une association de ta ville.
+  Repère les détails inventés (dates, noms, chiffres). Puis repose la même question en collant
+  dans ton message le texte de leur page « À propos » : les erreurs diminuent nettement. Tu viens
+  de faire ton premier RAG à la main !
+
+glossaire:
+  LLM: >-
+    *Large Language Model*, ou grand modèle de langage. Programme entraîné sur d'énormes quantités
+    de textes pour prédire la suite d'un texte. Exemples : les modèles derrière ChatGPT, Claude ou
+    Gemini.
+  Token: >-
+    Petit morceau de texte (un mot, une partie de mot ou un signe) : l'unité avec laquelle un LLM
+    lit et écrit.
+  Hallucination: "Réponse fausse ou inventée, produite avec assurance par un modèle d'IA."
+  RAG: >-
+    *Retrieval-Augmented Generation*. Technique qui consiste à rechercher des documents utiles et
+    à les fournir au modèle avant qu'il réponde.
+  Source: "Document d'où provient une information, que l'on peut consulter pour vérifier une réponse."

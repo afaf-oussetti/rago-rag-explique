@@ -23,6 +23,9 @@ video = [
     "pydub>=0.25",
     # pydub utilise le module audioop, retiré de Python à partir de la 3.13.
     "audioop-lts>=0.2; python_version >= '3.13'",
+    # Guide PDF : mise en page et police Fredoka en version fixe (non variable).
+    "reportlab>=4.2",
+    "fonttools>=4.50",
 ]
 # Outils de développement : qualité de code et tests.
 dev = [
