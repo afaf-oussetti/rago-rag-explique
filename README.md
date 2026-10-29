@@ -9,7 +9,9 @@ du RAG pour arrêter d'halluciner.
 **Toutes les vidéos sont générées à 100 % en Python** : animations, voix robot, sous-titres, montage.
 Ce repo contient tout le code : tu peux le lire, le lancer et l'adapter à tes propres projets.
 
-> 🎬 *Aperçu animé à venir.*
+<p align="center">
+  <img src="docs/apercu.gif" alt="Aperçu de l'épisode S01E01 : Rago affirme que la tour Eiffel a été construite en 1972 par des pingouins" width="300">
+</p>
 
 ---
 
@@ -63,9 +65,13 @@ pip install -e ".[video,dev]"
 python -m rago build s01e01
 ```
 
-La vidéo finale arrive dans le dossier `output/`.
+Au bout de quelques minutes, tu obtiens dans le dossier `output/` :
 
-> 🚧 Le pipeline de génération est en cours de construction : voir [docs/STATUS.md](docs/STATUS.md).
+- `s01e01.mp4` : la vidéo finale (verticale 1080 × 1920, 30 fps, avec voix, sous-titres et signature) ;
+- `s01e01.srt` : les sous-titres, à importer sur YouTube ou TikTok si tu veux.
+
+L'animation est l'étape la plus longue. Les épisodes déjà publiés sont listés dans
+[docs/STATUS.md](docs/STATUS.md).
 
 Pour voir Rago et la charte graphique en images (dans `output/charte/`) :
 
@@ -89,6 +95,16 @@ python -m rago voices
 2. La voix de Rago est générée réplique par réplique (edge-tts + effet robot avec pydub), et chaque durée est mesurée.
 3. L'animation Manim est calée sur ces durées.
 4. MoviePy assemble animation, voix, sous-titres et signature, puis exporte le MP4 vertical (1080 × 1920, 30 fps).
+
+## Créer ton propre épisode
+
+1. Écris le script dans `episodes/s09e01_mon_sujet.yaml`, en t'inspirant de
+   [`s01e01_hallucination.yaml`](episodes/s01e01_hallucination.yaml) : une liste de répliques, chacune
+   avec sa section, son texte et l'expression de Rago.
+2. Crée la scène `src/rago/scenes/s09e01.py` : une classe qui hérite de `EpisodeScene`, avec un bloc
+   `with self.line(n):` par réplique. Tout ce qui est écrit dans ce bloc est calé automatiquement
+   sur la voix.
+3. Lance `python -m rago build s09e01`.
 
 ## Structure du projet
 

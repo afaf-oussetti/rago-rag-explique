@@ -54,7 +54,10 @@ Code couleur de l'ampoule : **rose-violet = Rago invente**, **jaune = Rago a une
 
 ## Mise en page
 
-- Format : MP4 vertical 1080 × 1920, 30 fps, 40 à 60 s.
+- Format : MP4 vertical 1080 × 1920, 30 fps, **65 à 80 s**. Plus d'une minute, c'est la condition de
+  rémunération TikTok (Creator Rewards). Le pipeline prévient si un épisode sort de 62-80 s.
+- Pour régler le rythme sans toucher au texte : `pause_apres` dans le script YAML ajoute une
+  respiration après une réplique.
 - **Zones recouvertes par Instagram** : les 250 px du haut et les 420 px du bas. On n'y met rien d'important.
 - Titre de l'épisode : étiquette orange « S01E01 », puis le titre, juste sous la zone du haut.
 - Sous-titres : sur fond sombre arrondi, juste au-dessus de la zone du bas, avec le mot-clé en orange.
@@ -85,6 +88,7 @@ python -m rago voices      # crée output/voix/variante_A.wav, _B.wav, _C.wav
 
 ### Écriture des répliques
 
-- Des phrases courtes : environ 2,5 mots par seconde avec cette voix.
+- Des phrases courtes : environ 3 mots par seconde avec cette voix. Comptez environ 170 mots
+  pour un épisode de 65 à 70 s, respirations comprises.
 - Le hook tient en 3 s, soit 7 à 8 mots maximum.
 - La ponctuation guide l'intonation : « ? » et « ! » sont bien rendus, et « … » crée une pause.

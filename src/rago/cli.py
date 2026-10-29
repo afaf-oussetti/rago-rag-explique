@@ -50,6 +50,12 @@ def build_parser() -> argparse.ArgumentParser:
         default=DEFAULT_EPISODES_DIR,
         help="dossier des scripts YAML (par défaut : episodes/)",
     )
+    build.add_argument(
+        "--output-dir",
+        type=Path,
+        default=DEFAULT_OUTPUT_DIR,
+        help="dossier de la vidéo finale (par défaut : output/)",
+    )
 
     preview = subparsers.add_parser(
         "preview", help="rend les planches de la charte graphique (PNG)"
@@ -88,9 +94,15 @@ def main(argv: Sequence[str] | None = None) -> int:
             pattern = f"{args.episode}_*.yaml"
             print(f"Épisode introuvable : aucun fichier {pattern} dans {args.episodes_dir}")
             return 2
-        print(f"Script trouvé : {script}")
-        print("Le pipeline de génération n'est pas encore implémenté (jalon 3).")
-        return 1
+        from rago.pipeline import build_episode
+        from rago.script import ScriptError
+
+        try:
+            build_episode(script, args.output_dir)
+        except ScriptError as error:
+            print(f"Erreur dans le script : {error}")
+            return 2
+        return 0
 
     if args.command == "preview":
         # Import tardif : Manim n'est nécessaire que pour cette commande.

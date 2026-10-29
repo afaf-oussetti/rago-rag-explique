@@ -7,13 +7,14 @@
 | 0 | Initialisation du repo (structure, outils, CI) | ✅ Terminé |
 | 1 | Charte graphique et design de Rago | ✅ Terminé |
 | 2 | Voix robot (2 ou 3 variantes) | ✅ Terminé (variante A) |
-| 3 | Pipeline complet + épisode pilote S01E01 | ⏳ À faire |
+| 3 | Pipeline complet + épisode pilote S01E01 | ✅ Terminé |
+| 4 | Guide PDF du RAG (enrichi à chaque épisode) | ⏳ À faire |
 
 ## Épisodes
 
 | Épisode | Notion | Script | Vidéo |
 |---|---|---|---|
-| S01E01 | L'hallucination des LLM | Brouillon | — |
+| S01E01 | L'hallucination des LLM | ✅ Validé | ✅ 66,8 s |
 | S01E02 | Le principe du RAG | — | — |
 | S01E03 | Le chunking | — | — |
 | S01E04 | Les embeddings | — | — |
@@ -48,3 +49,13 @@
 - `voice.py` : préréglages de voix, effet robot (métal + écho), coupe des silences, cache, durées
 - 3 variantes comparées (`python -m rago voices`) : **A · Petit robot malin** retenue (Henri, +25 Hz, +5 %, écho 45 ms)
 - À prévoir au jalon 3 : raccourcir le hook de S01E01 (~5,5 s actuellement, objectif 3 s)
+
+### 2026-10-29 · Jalon 3
+
+- Pipeline complet en une commande : `python -m rago build s01e01`
+  (script YAML → voix → minutage → animation Manim → sous-titres → assemblage MoviePy → MP4 + SRT)
+- `EpisodeScene` : chaque `with self.line(n)` est calé automatiquement sur la voix ; Rago rebondit quand il parle
+- Durée cible passée à 65-80 s (plus d'une minute : rémunération TikTok) ; `pause_apres` pour régler le rythme
+- Script S01E01 réécrit et validé (12 répliques, appel à s'abonner + « Commente RAG »)
+- Épisode pilote S01E01 validé (66,8 s) ; GIF d'aperçu dans le README
+- Décision : le PDF promis est un **guide complet du RAG**, enrichi à chaque épisode (jalon dédié)
