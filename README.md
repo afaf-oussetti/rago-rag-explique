@@ -67,6 +67,12 @@ La vidéo finale arrive dans le dossier `output/`.
 
 > 🚧 Le pipeline de génération est en cours de construction : voir [docs/STATUS.md](docs/STATUS.md).
 
+Pour voir Rago et la charte graphique en images (dans `output/charte/`) :
+
+```bash
+python -m rago preview
+```
+
 ## Comment ça marche
 
 1. Le script de l'épisode est lu depuis `episodes/` (un fichier YAML : répliques + indications d'animation).
